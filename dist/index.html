@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="beatushouse. 사람과 기술 사이에 더 나은 연결을 만듭니다." />
+  <title>beatushouse. connected, clearly.</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23d8ff45'/%3E%3Cpath d='M8 21.5 16 8l8 13.5h-4.2L16 14.9l-3.8 6.6H8Z' fill='%230b0d0d'/%3E%3C/svg%3E" />
+  <style>
+    :root { --bg:#0b0d0d; --ink:#f2f4ed; --muted:#9ba29d; --line:rgba(242,244,237,.15); --lime:#d8ff45; --violet:#a799ff; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:Inter, Pretendard, "Noto Sans KR", system-ui, sans-serif; font-size:16px; line-height:1.5; overflow-x:hidden; }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.06; z-index:10; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E"); }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1180px, calc(100% - 48px)); margin:auto; }
+    header { position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; padding:28px 0; }
+    .logo { font-weight:800; letter-spacing:-.06em; font-size:1.2rem; }
+    .logo span { color:var(--lime); }
+    nav { display:flex; gap:28px; color:var(--muted); font-size:.88rem; }
+    nav a:hover { color:var(--ink); }
+    .nav-cta { color:var(--lime); border-bottom:1px solid var(--lime); padding-bottom:3px; }
+    .hero { min-height:calc(100vh - 86px); position:relative; display:flex; align-items:center; padding:65px 0 120px; }
+    .orb { position:absolute; width:50vw; height:50vw; max-width:680px; max-height:680px; right:-11vw; top:5%; border-radius:50%; background:radial-gradient(ellipse at 60% 42%, rgba(69,151,255,.58), transparent 48%), radial-gradient(ellipse at 36% 66%, rgba(108,82,210,.46), transparent 52%), rgba(8,10,24,.35); filter:blur(42px); opacity:.72; animation:float 6s ease-in-out infinite; }
+    .orb::before, .orb::after { content:""; position:absolute; pointer-events:none; border-radius:48% 52% 61% 39% / 42% 38% 62% 58%; filter:blur(26px); }
+    .orb::before { width:46%; height:40%; left:17%; top:27%; background:radial-gradient(circle, rgba(216,255,69,.9), rgba(177,230,55,.42) 42%, transparent 72%); animation:driftLime 5.2s ease-in-out infinite alternate; }
+    .orb::after { width:64%; height:54%; right:2%; top:10%; background:radial-gradient(circle, rgba(46,133,255,.7), rgba(72,71,190,.36) 46%, transparent 74%); animation:driftBlue 8.4s ease-in-out infinite alternate; }
+    .hero-grid { position:absolute; inset:0; background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size:72px 72px; mask-image:linear-gradient(to right, transparent, black 20%, black 78%, transparent); opacity:.32; }
+    .hero-copy { position:relative; z-index:1; max-width:850px; }
+    .eyebrow { color:var(--lime); text-transform:uppercase; letter-spacing:.18em; font-size:.72rem; font-weight:700; margin-bottom:24px; }
+    h1 { font-size:clamp(4.4rem, 11vw, 10.5rem); letter-spacing:-.095em; line-height:.87; margin:0 0 38px; font-weight:750; max-width:900px; }
+    h1 em { font-style:normal; color:var(--lime); }
+    .hero-bottom { display:flex; align-items:end; justify-content:space-between; gap:32px; }
+    .intro { color:var(--muted); max-width:390px; font-size:1.05rem; }
+    .scroll { color:var(--muted); font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; writing-mode:vertical-rl; }
+    .scroll::after { content:"↓"; color:var(--lime); display:block; margin-top:12px; font-size:1rem; }
+    section { border-top:1px solid var(--line); padding:120px 0; }
+    .section-head { display:grid; gap:20px; margin-bottom:54px; }
+    .section-label { color:var(--muted); font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; }
+    h2 { font-size:clamp(2.4rem, 5vw, 5.2rem); line-height:.95; letter-spacing:-.07em; margin:0; max-width:700px; }
+    .services { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+    .service { background:var(--bg); padding:28px 32px; min-height:190px; transition:background .3s, transform .3s; }
+    .service:hover { background:#141817; transform:translateY(-5px); }
+    .service h3 { font-size:1.35rem; margin:30px 0 10px; letter-spacing:-.04em; }
+    .service p { color:var(--muted); margin:0; font-size:.92rem; }
+    .statement { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:end; }
+    .statement p { color:var(--muted); max-width:380px; margin:0; }
+    .contact { display:flex; justify-content:space-between; align-items:end; gap:30px; }
+    .contact h2 { max-width:620px; }
+    .button { display:inline-flex; align-items:center; gap:18px; background:var(--lime); color:#0b0d0d; padding:18px 22px; font-weight:750; min-width:190px; justify-content:space-between; transition:transform .25s, box-shadow .25s; }
+    .button:hover { transform:translateY(-4px) rotate(-1deg); box-shadow:8px 8px 0 var(--violet); }
+    .button { cursor:pointer; border:0; font:inherit; }
+    .copy-toast { position:fixed; z-index:20; left:50%; top:50%; transform:translate(-50%, -50%) scale(.94); background:var(--lime); color:#0b0d0d; padding:16px 24px; font-weight:800; opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+    .copy-toast.show { opacity:1; transform:translate(-50%, -50%) scale(1); }
+    footer { border-top:1px solid var(--line); padding:26px 0 34px; display:flex; justify-content:space-between; color:var(--muted); font-size:.78rem; }
+    @keyframes float { 0%,100% { transform:translate3d(0,0,0) scale(1) rotate(-2deg); } 50% { transform:translate3d(-6%,7%,0) scale(1.1) rotate(4deg); } }
+    @keyframes driftLime { 0% { transform:translate3d(-8%,12%,0) rotate(-16deg) scale(.82); } 45% { transform:translate3d(28%,-12%,0) rotate(18deg) scale(1.08); } 100% { transform:translate3d(8%,30%,0) rotate(36deg) scale(.9); } }
+    @keyframes driftBlue { 0% { transform:translate3d(12%,-8%,0) rotate(8deg) scale(.9); } 50% { transform:translate3d(-18%,22%,0) rotate(-14deg) scale(1.14); } 100% { transform:translate3d(16%,12%,0) rotate(20deg) scale(.96); } }
+    @media (max-width:720px) { .shell { width:min(100% - 32px, 560px); } header { padding:20px 0; } nav a:not(.nav-cta) { display:none; } .hero { min-height:calc(100vh - 70px); padding:70px 0 90px; } h1 { font-size:clamp(4rem, 21vw, 7rem); } .hero-bottom, .section-head, .statement, .contact { display:block; } .scroll { margin-top:48px; writing-mode:initial; } .scroll::after { display:inline; margin-left:8px; } section { padding:80px 0; } .section-head { margin-bottom:32px; } .section-label { display:block; margin-bottom:20px; } .services { grid-template-columns:1fr; } .service { min-height:160px; } .service h3 { margin-top:20px; } .statement p { margin-top:28px; } .button { margin-top:34px; } footer { display:block; } footer span { display:block; margin-top:8px; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="logo" href="#top" aria-label="beatushouse home">beatus<span>house</span></a>
+      <nav aria-label="주요 메뉴"><a href="#what">what we do</a><a href="#approach">how we think</a><a href="#contact" class="nav-cta">contact ↗</a></nav>
+    </header>
+    <main id="top">
+      <section class="hero" style="border-top:0; padding-top:0;">
+        <div class="orb" aria-hidden="true"></div><div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-copy"><div class="eyebrow">information & communication service</div><h1>Make it<br><em id="rotating-word">connect.</em></h1><div class="hero-bottom"><p class="intro">복잡한 기술을 더 선명한 경험으로.<br>사람과 시스템 사이의 연결을 설계합니다.</p><a class="scroll" href="#what">explore</a></div></div>
+      </section>
+      <section id="what"><div class="section-head"><span class="section-label">01 / what we do</span><h2>Useful tech.<br>Better flow.</h2></div><div class="services"><article class="service"><h3>Service Design</h3><p>사용자의 문제에서 시작해, 쓰이는 서비스의 구조를 만듭니다.</p></article><article class="service"><h3>Digital Build</h3><p>빠르고 유연하게 작동하는 웹과 디지털 솔루션을 구현합니다.</p></article><article class="service"><h3>Smart Operation</h3><p>만들고 끝내지 않고, 더 나은 흐름으로 계속 진화시킵니다.</p></article></div></section>
+      <section id="approach"><div class="section-head"><span class="section-label">02 / how we think</span><h2>Small team.<br>Wide signal.</h2></div><div class="statement"><p>필요한 정보를 빠르게 연결하고,<br>반복되는 일을 더 단순하게 만들고,<br>사람이 중요한 일에 집중할 수 있는 서비스를 만듭니다.</p></div></section>
+      <section id="contact"><div class="section-head"><span class="section-label">03 / contact</span><h2>Got a signal?<br><em>Let's talk.</em></h2></div><div class="contact"><button class="button" id="copy-email" type="button">beatushouse1@gmail.com <span>↗</span></button></div></section>
+    </main>
+    <footer><span>© 2026 beatushouse</span><span>connected, clearly.</span></footer>
+  </div>
+  <div class="copy-toast" id="copy-toast" role="status" aria-live="polite">Copied!</div>
+  <script>
+    const orb = document.querySelector('.orb');
+    const rotatingWord = document.querySelector('#rotating-word');
+    const words = ['connect.', 'do.', 'work.', 'flow.', 'grow.', 'build.', 'move.', 'think.', 'share.', 'shape.'];
+    let wordIndex = 0;
+    setInterval(() => {
+      rotatingWord.style.opacity = '0';
+      setTimeout(() => { wordIndex = (wordIndex + 1) % words.length; rotatingWord.textContent = words[wordIndex]; rotatingWord.style.opacity = '1'; }, 220);
+    }, 1800);
+    rotatingWord.style.transition = 'opacity .22s ease';
+    const copyButton = document.querySelector('#copy-email');
+    const copyToast = document.querySelector('#copy-toast');
+    copyButton.addEventListener('click', async () => {
+      const email = 'beatushouse1@gmail.com';
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch {
+        const temporaryInput = document.createElement('textarea');
+        temporaryInput.value = email;
+        temporaryInput.style.position = 'fixed';
+        temporaryInput.style.opacity = '0';
+        document.body.appendChild(temporaryInput);
+        temporaryInput.select();
+        document.execCommand('copy');
+        temporaryInput.remove();
+      }
+      copyToast.classList.add('show');
+      setTimeout(() => copyToast.classList.remove('show'), 1400);
+    });
+    window.addEventListener('pointermove', (event) => { const x = (event.clientX / innerWidth - .5) * 28; const y = (event.clientY / innerHeight - .5) * 28; orb.style.margin = `${y}px 0 0 ${x}px`; }, { passive:true });
+  </script>
+</body>
+</html>
